@@ -1,1 +1,1 @@
-export const DB_NAME = 'notes'
+export const DB_NAME = 'adecco'

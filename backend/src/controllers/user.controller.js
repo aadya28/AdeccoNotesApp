@@ -1,4 +1,4 @@
-import { User } from "../models/user.models.js";
+import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -40,6 +40,8 @@ if(
     const createdUser = await User.findById(user._id).select(
         "-password -refreshToken"
     )
+    const {accessToken, refreshToken} = await generateAccessAndRefreshToken(user._id);
+
     if(!createdUser){
         throw new ApiError(500, "Something went wrong while registering.")
     }
